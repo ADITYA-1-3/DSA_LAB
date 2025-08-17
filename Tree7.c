@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <conio.h>
 
 struct Node {
     int data;
@@ -41,6 +42,9 @@ void postorderTraversal(struct Node* root) {
 
 int main() {
     struct Node* root = createNode(1);
+    
+    clrscr();
+
     root->left = createNode(2);
     root->right = createNode(3);
     root->left->left = createNode(4);
@@ -57,6 +61,7 @@ int main() {
     printf("Postorder Traversal: ");
     postorderTraversal(root);
     printf("\n");
-    
+
+    getch();
     return 0;
 }
