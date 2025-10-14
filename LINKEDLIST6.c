@@ -10,13 +10,11 @@ struct node
 
 struct node *head = NULL;
 
-
 void insert_at_front(int value);
 void insert_at_end(int value);
 void insert_middle(int key, int value);
 void delete_node(int value);
 void display();
-
 
 void main()
 {
@@ -24,7 +22,7 @@ void main()
 
     while (1)
     {
-        clrscr(); 
+        clrscr();
         printf("\n--- Singly Linked List Menu ---\n");
         printf("1. Insert at beginning\n");
         printf("2. Insert at end\n");
@@ -63,30 +61,37 @@ void main()
             display();
             break;
         case 6:
-            printf("Exiting program.\n");
-            exit(0); 
+            exit(0);
         default:
             printf("Invalid choice. Try again.\n");
         }
-        
+
         printf("\nPress any key to continue...");
-        getch(); 
+        getch();
     }
 }
-
 
 void insert_at_front(int value)
 {
     struct node *newnode = (struct node *)malloc(sizeof(struct node));
+    if (newnode == NULL)
+    {
+        printf("Memory allocation failed.\n");
+        return;
+    }
     newnode->data = value;
     newnode->link = head;
     head = newnode;
 }
 
-
 void insert_at_end(int value)
 {
     struct node *newnode = (struct node *)malloc(sizeof(struct node));
+    if (newnode == NULL)
+    {
+        printf("Memory allocation failed.\n");
+        return;
+    }
     newnode->data = value;
     newnode->link = NULL;
 
@@ -98,29 +103,34 @@ void insert_at_end(int value)
     {
         struct node *temp = head;
         while (temp->link != NULL)
-        {
-            temp = temp->link;
-        }
-        temp->link = newnode;
+	{
+	    temp = temp->link;
+	}
+	temp->link = newnode;
     }
 }
 
-
 void insert_middle(int key, int value)
 {
+     struct node *newnode = (struct node *)malloc(sizeof(struct node));
     struct node *temp = head;
     while (temp != NULL && temp->data != key)
     {
-        temp = temp->link;
+	temp = temp->link;
     }
 
     if (temp == NULL)
     {
-        printf("Node with value %d not found.\n", key);
-        return;
+	printf("Node with value %d not found.\n", key);
+	return;
     }
 
-    struct node *newnode = (struct node *)malloc(sizeof(struct node));
+
+    if (newnode == NULL)
+    {
+        printf("Memory allocation failed.\n");
+        return;
+    }
     newnode->data = value;
     newnode->link = temp->link;
     temp->link = newnode;
@@ -155,12 +165,12 @@ void delete_node(int value)
     printf("Node with value %d deleted.\n", value);
 }
 
-
 void display()
 {
     struct node *temp = head;
-    if (temp == NULL) {
-        printf("List is empty.\n");
+    if (temp == NULL)
+    {
+		printf("List is empty.\n");
         return;
     }
 
