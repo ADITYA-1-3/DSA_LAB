@@ -43,7 +43,7 @@ void view()
 int main()
 {
     int ch = 0, val;
-    // clrscr(); // Note: clrscr() may not work on modern systems
+    
     while (ch != 4)
     {
         printf("\n QUEUE OPERATION \n");
